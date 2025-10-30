@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: todo-app
-        image: YOUR_DOCKERHUB_USERNAME/todo-app:latest  # ← Replace with your username
+        image: induwara1224/todo-app:latest  
         ports:
         - containerPort: 5000
         env:
