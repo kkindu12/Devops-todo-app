@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: todo-app
-        image: induwara1224/todo-app:latest  
+        image: ${{ secrets.DOCKER_USERNAME }}/todo-app:latest  # ← Use the same name
         ports:
         - containerPort: 5000
         env:
