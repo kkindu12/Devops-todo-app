@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevOps Todo App</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .todo-item { padding: 10px; margin: 5px 0; background: #f4f4f4; border-radius: 5px; }
+        .completed { text-decoration: line-through; color: #888; }
+        .btn { margin-left: 10px; padding: 5px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>🚀 DevOps Todo Application</h1>
+    <p><strong>Tech Stack:</strong> Flask + Docker + Kubernetes + GitHub Actions + Jenkins</p>
+    
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="Enter new task" required>
+        <button type="submit">Add Task</button>
+    </form>
+
+    <h2>Todo List:</h2>
+    {% for todo in todos %}
+    <div class="todo-item {% if todo[2] %}completed{% endif %}">
+        {{ todo[1] }}
+        <a href="/toggle/{{ todo[0] }}" class="btn">✅</a>
+        <a href="/delete/{{ todo[0] }}" class="btn">❌</a>
+    </div>
+    {% endfor %}
+</body>
+</html>
