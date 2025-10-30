@@ -82,17 +82,17 @@ jobs:
     - name: Deploy to Kubernetes
       run: |
     
-          kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/deployment.yaml
     
     
-          sleep 10
+        sleep 10
     
   
-          kubectl set image deployment/todo-app todo-app=${{ secrets.DOCKER_USERNAME }}/todo-app:latest
+        kubectl set image deployment/todo-app todo-app=${{ secrets.DOCKER_USERNAME }}/todo-app:latest
     
  
-          kubectl rollout status deployment/todo-app --timeout=300s
+        kubectl rollout status deployment/todo-app --timeout=300s
      
-          echo "✅ Kubernetes deployment successful!"
-   env:
+        echo "✅ Kubernetes deployment successful!"
+    env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
