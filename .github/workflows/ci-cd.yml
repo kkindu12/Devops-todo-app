@@ -82,17 +82,17 @@ jobs:
     - name: Deploy to Kubernetes
       run: |
     
+        # Write kubeconfig to file to avoid parsing issues
+        mkdir -p ~/.kube
+        echo "$KUBECONFIG" > ~/.kube/config
+        chmod 600 ~/.kube/config
+    
+        # Verify connection
+        kubectl cluster-info
+    
+        # Deploy
         kubectl apply -f k8s/deployment.yaml
-    
-    
-        sleep 10
-    
-  
-        kubectl set image deployment/todo-app todo-app=${{ secrets.DOCKER_USERNAME }}/todo-app:latest
-    
- 
         kubectl rollout status deployment/todo-app --timeout=300s
-     
         echo "✅ Kubernetes deployment successful!"
     env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
